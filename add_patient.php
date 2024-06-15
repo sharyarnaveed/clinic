@@ -1,46 +1,3 @@
-<?php
-if($_SERVER["REQUEST_METHOD"]=="POST")
-{
-    include "partials/db_conn.php";
-
-   $patient_name=$_POST['patient_name']; 
-   $patient_father=$_POST['patient_father'];
-   $pcnic=$_POST['patient_cnic'];
-   $phone_number=$_POST['phone_number'];
-   $gender=$_POST['Gender'];
-   $payment=$_POST['payment'];
-$pissue=$_POST['patient_issue'];
-
-if(empty($patient_name)||empty($patient_father)||empty($pcnic)||empty($phone_number)||empty($gender)||empty($payment)||empty($pissue))
-{
-    echo "<script>alert('Please fill all the info')</script>";
-}
-else
-{
-    echo $pcnic;
-    $insert_patient_data=$conn->prepare("INSERT INTO `add_patient` (`name`,`fname`,`cnic`,`phoneno`,`gender`,`disease`,`payment`) VALUES (?,?,?,?,?,?,?) ");
-    $insert_patient_data->bind_param("sssssss",$patient_name,$patient_father,$pcnic,$phone_number,$gender,$pissue,$payment);
-
-    if($insert_patient_data->execute())
-    {
-        echo "<script>alert('Record Added')</script>";
-    }
-    else{
-        $conn->error;
-    }
-   $insert_patient_data->close();
-   $conn->close();
-}
-   
-
-}
-else{
-
-}
-?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +9,7 @@ else{
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap" rel="stylesheet">
     <title>Add Patient</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="css/the_main_.css"> -->
 </head>
 <body>
@@ -66,7 +24,7 @@ else{
 
 <div class="add_patient_form">
     <h2>Add Patient</h2>
-    <form class="patient_form" method="post" action="">
+    <form class="patient_form" id="add_patient_record" method="post" action="">
         <input type="text" name="patient_name" placeholder="Name">
         <input type="text" name="patient_father" placeholder="Father Name">
 <input type="text" name="patient_cnic" placeholder="CNIC" >
@@ -143,6 +101,28 @@ else{
       let search=document.getElementById("search")
       search.href="search.php"; 
           
+
+
+$(document).ready(function()
+{
+    $("#add_patient_record").on("submit",function(event)
+{
+    event.preventDefault();
+
+    let formdata=$(this).serialize();
+$.ajax({
+    url: "add_record_to_db.php",
+    type: "POST",
+    data: formdata,
+    success: function(data){
+        alert("Patient Added Successfully");}
+
+})
+
+})
+})
+
+
 </script>
 </main>
 </body>
