@@ -48,13 +48,12 @@
         </div>
    </div>
    </a>
-   <a href="#"  class="content_features_options">  <div>
+   <a href="patientturn.php"  class="content_features_options">  <div>
     <div class="the_inner_img">
         
     </div>
   <div  class="text_inner">
-        <h3>Search 
-    Patient</h3>
+        <h3>Patient Turn</h3>
         </div>
    </div>
    </a>
@@ -143,7 +142,7 @@ for (let index = 0; index < image_array.length; index++) {
         <a id="files" href="files.php" class="the_content">Files</a>
         <a id="add" href="add_patient.php" class="the_content">Add Patient</a>
         <a id="payments" href="payment.php" class="the_content">Payments</a>
-        <a id="search" href="#" class="the_content">Search Patient</a>
+        <a id="search" href="#" class="the_content">Patient Turn</a>
       <input type="submit" style="height: 50px; font-size: 18px; " id="sign_out" value="Sign out" >
     </div>
 </aside>
@@ -156,7 +155,7 @@ for (let index = 0; index < image_array.length; index++) {
       let payments=document.getElementById("payments");
       payments.href="payment.php";
       let search=document.getElementById("search")
-      search.href="search.php"; 
+      search.href="patientturn.php"; 
           
 </script>
     </main>

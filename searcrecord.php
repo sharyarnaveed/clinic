@@ -28,7 +28,7 @@ if (isset($_POST['query'])) {
                 echo "<h5>" . htmlspecialchars($row["name"]) . "</h5>";
                 echo "<h5>" . htmlspecialchars($row["cnic"]) . "</h5>";
                 echo "<input type='submit' value='Show'>";
-                echo "<input type='submit' value='Delete'>";
+
                 echo "</div>";
             }
         } else {

@@ -200,3 +200,64 @@ color: white;
 {
     filter: invert(100%);
 }
+.turnshow
+{
+    border: 2px solid red;
+    height: 90%;
+    color:white
+}
+
+
+.record
+{
+   border: 2px solid red;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.single
+{
+border: 2px solid black;
+    height: 55px;
+    border: 2px solid red;
+    justify-content: space-around;
+    margin: 10px 12px;
+    align-items: center;
+    display: flex;
+    width: 95%;
+}
+
+
+.single h5{
+    font-size: 20px;
+width: 30%;
+color: white;
+    padding: 15px 8px;
+    border-right: 2px solid black;
+}
+
+.single input
+{
+    width: 10%;
+    height: 70%;
+    font-size: 18px;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.863);
+    background-color: rgba(0, 0, 0, 0.884);
+    color: white;
+}
+.deleteBtn
+{
+    width: 100px;
+    height: 70%;
+    font-size: 18px;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.863);
+    background-color: rgba(0, 0, 0, 0.884);
+    color: white;
+}

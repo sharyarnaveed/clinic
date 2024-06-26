@@ -19,7 +19,7 @@ height: 100%;
     flex-direction: column;
     
     align-items: center;
-    height: 664px;
+    height: 100vh;
 }
 
     
@@ -210,6 +210,17 @@ width: 30%;
 }
 
 .single input
+{
+    width: 10%;
+    height: 70%;
+    font-size: 18px;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.863);
+    background-color: rgba(0, 0, 0, 0.884);
+    color: white;
+}
+.deleteBtn
 {
     width: 10%;
     height: 70%;

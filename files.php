@@ -21,7 +21,7 @@
                 <input type="search" id="cnicsearch" placeholder="CNIC">
                 <label for="searchname">Name:</label>
                 <input type="text" id="searchname" placeholder="Name">
-                <input type="submit" style="background-color: black; color: white; width: 14%; height: 60%;" value="Search">
+                
             </div>
             <div class="show_record">
                 <div class="record_heading">
@@ -80,7 +80,7 @@
                             echo "<h5>".$row["name"]."</h5>";
                             echo "<h5>".$row["cnic"]."</h5>";
                             echo "<input type='submit' value='Show' >";
-                            echo "<input type='submit' value='Delete'>";
+                       
                             echo "</div>";
                         }
                     }
@@ -88,6 +88,7 @@
                 </div>
                 <div id="searchrecord"></div>
             </div>
+            <button></button>
         </section>
         <aside class="options">
             <div class="clocktime">
@@ -125,7 +126,7 @@
                 <a id="files" href="#" class="the_content">Files</a>
                 <a id="add" href="#" class="the_content">Add Patient</a>
                 <a id="payments" href="#" class="the_content">Payments</a>
-                <a id="search" href="#" class="the_content">Search Patient</a>
+                <a id="search" href="patientturn.php" class="the_content">Patient Turn</a>
             </div>
         </aside>
         <script>
@@ -135,8 +136,7 @@
             add.href = "add_patient.php";
             let payments = document.getElementById("payments");
             payments.href = "payment.php";
-            let search = document.getElementById("search");
-            search.href = "search.php";
+         
         </script>
     </main>
 </body>

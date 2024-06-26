@@ -19,16 +19,17 @@ else
 {
   
     $insert_patient_data_into_add_patient="INSERT INTO `add_patient` (`name`,`fname`,`cnic`,`phoneno`,`gender`,`disease`,`payment`) VALUES ('$patient_name','$patient_father','$pcnic','$phone_number','$gender','$pissue','$payment')";
-    $insert_patient_data_into_add_record="INSERT INTO `patient_record` (`name`,`fname`,`cnic`,`phoneno`,`gender`,`disease`,`payment`) VALUES ('$patient_name','$patient_father','$pcnic','$phone_number','$gender','$pissue','$payment') ";
-if($conn->query($insert_patient_data_into_add_patient)&&$conn->query($insert_patient_data_into_add_record))
+   
+if($conn->query($insert_patient_data_into_add_patient))
 {
-    echo $pissue;
+ 
     
 }
 else{
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-   
+
+
    $conn->close();
 }
    
