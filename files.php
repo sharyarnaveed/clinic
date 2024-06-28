@@ -21,54 +21,14 @@
                 <input type="search" id="cnicsearch" placeholder="CNIC">
                 <label for="searchname">Name:</label>
                 <input type="text" id="searchname" placeholder="Name">
-                
             </div>
             <div class="show_record">
                 <div class="record_heading">
                     <h4>Name</h4>
                     <h4>CNIC</h4>
                 </div>
-                <script>
-                    $(document).ready(function() {
-                        $('#searchname').keyup(function() {
-                            var query = $(this).val();
-                            if (query != "") {
-                                $.ajax({
-                                    url: "searcrecord.php",
-                                    method: "POST",
-                                    data: { query: query },
-                                    success: function(data) {
-                                        $(".record").hide();
-                                        $("#searchrecord").html(data).show();
-                                    }
-                                });
-                            } else {
-                                $(".record").show();
-                                $("#searchrecord").hide();
-                            }
-                        });
-
-                        $('#cnicsearch').keyup(function() {
-                            var cnic = $(this).val();
-                            if (cnic != "") {
-                                $.ajax({
-                                    url: "searchbycnic.php",
-                                    method: "POST",
-                                    data: { cnic: cnic },
-                                    success: function(data) {
-                                        $(".record").hide();
-                                        $("#searchrecord").html(data).show();
-                                    }
-                                });
-                            } else {
-                                $(".record").show();
-                                $("#searchrecord").hide();
-                            }
-                        });
-                    });
-                </script>
-
                 <div class="record">
+                    <!-- Display patient records -->
                     <?php
                     include "partials/db_conn.php";
 
@@ -77,10 +37,9 @@
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<div class='single'>";
-                            echo "<h5>".$row["name"]."</h5>";
-                            echo "<h5>".$row["cnic"]."</h5>";
-                            echo "<input type='submit' value='Show' >";
-                       
+                            echo "<h5>" . htmlspecialchars($row["name"]) . "</h5>";
+                            echo "<h5>" . htmlspecialchars($row["cnic"]) . "</h5>";
+                            echo "<button class='generate-doc' data-id='" . htmlspecialchars($row["patient_id"]) . "'>Generate Doc</button>";
                             echo "</div>";
                         }
                     }
@@ -105,22 +64,6 @@
                     <span id="second">00</span>
                 </div>
             </div>
-            <script>
-                let hr = document.getElementById("hour");
-                let min = document.getElementById("minute");
-                let sec = document.getElementById("second");
-
-                setInterval(() => {
-                    let date = new Date();
-                    let hrs = date.getHours();
-                    let mins = date.getMinutes();
-                    let secs = date.getSeconds();
-
-                    hr.innerHTML = hrs < 10 ? `0${hrs}` : hrs;
-                    min.innerHTML = mins < 10 ? `0${mins}` : mins;
-                    sec.innerHTML = secs < 10 ? `0${secs}` : secs;
-                }, 1000);
-            </script>
             <div class="aside_content">
                 <a id="home" href="main.php" class="the_content">Home</a>
                 <a id="files" href="#" class="the_content">Files</a>
@@ -129,15 +72,30 @@
                 <a id="search" href="patientturn.php" class="the_content">Patient Turn</a>
             </div>
         </aside>
-        <script>
-            let file = document.getElementById("files");
-            file.href = "files.php";
-            let add = document.getElementById("add");
-            add.href = "add_patient.php";
-            let payments = document.getElementById("payments");
-            payments.href = "payment.php";
-         
-        </script>
     </main>
+    <script>
+        $(document).ready(function () {
+            // AJAX request to generate and download document
+            $(document).on('click', '.generate-doc', function () {
+                var id = $(this).data('id');
+
+                $.ajax({
+                    url: 'download_doc.php',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (response) {
+                        if (response.trim() === 'success') {
+                            alert('Document generated and downloaded successfully.');
+                        } else {
+                            console.log('Failed to generate document: ' );
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('AJAX error: ' + textStatus + ' - ' + errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
